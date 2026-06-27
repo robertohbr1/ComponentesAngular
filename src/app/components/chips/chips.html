@@ -1,0 +1,27 @@
+<div class="chips-container">
+  @if (title()) {
+    <h3>{{ title() }}</h3>
+  }
+  
+  <div class="chips-group" role="group" [attr.aria-label]="title() || 'Opções de Filtro'">
+    <button 
+      type="button"
+      class="chip" 
+      [class.active]="selected() === ''" 
+      [attr.aria-pressed]="selected() === ''"
+      (click)="selectAll()">
+      Todos
+    </button>
+
+    @for (opt of options(); track opt.value) {
+      <button 
+        type="button"
+        class="chip" 
+        [class.active]="selectedValuesSet().has(opt.value)" 
+        [attr.aria-pressed]="selectedValuesSet().has(opt.value)"
+        (click)="toggleOption(opt.value)">
+        {{ opt.caption }}
+      </button>
+    }
+  </div>
+</div>

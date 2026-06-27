@@ -1,0 +1,72 @@
+.ie-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  max-width: 320px;
+  font-family: inherit;
+}
+
+label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--label-color, #475569);
+  transition: color 0.2s ease;
+}
+
+.label-invalid {
+  color: var(--error-color, #dc2626);
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+input {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color, #cbd5e1);
+  background-color: var(--input-bg, #ffffff);
+  color: var(--input-text, #0f172a);
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+}
+
+input:focus-visible {
+  border-color: var(--focus-border-color, #2563eb);
+  box-shadow: 0 0 0 3px var(--focus-ring-color, rgba(37, 99, 235, 0.15));
+}
+
+/* Estado de Erro / Inválido */
+input.input-invalid {
+  border-color: var(--error-color, #dc2626);
+  background-color: var(--error-bg, #fff5f5);
+}
+
+input.input-invalid:focus-visible {
+  border-color: var(--error-color, #dc2626);
+  box-shadow: 0 0 0 3px var(--error-ring-color, rgba(220, 38, 38, 0.15));
+}
+
+.error-message {
+  font-size: 0.775rem;
+  font-weight: 500;
+  color: var(--error-color, #dc2626);
+  margin-top: 2px;
+  display: block;
+  animation: slideIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

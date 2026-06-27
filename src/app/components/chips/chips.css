@@ -1,0 +1,60 @@
+.chips-container {
+  margin-bottom: 20px;
+}
+
+h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-secondary, #64748b);
+  letter-spacing: 0.05em;
+}
+
+.chips-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.chip {
+  background-color: var(--chip-bg, #f1f5f9);
+  border: 1px solid var(--chip-border, #e2e8f0);
+  color: var(--chip-text, #475569);
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+  outline: none;
+}
+
+.chip:focus-visible {
+  outline: 2px solid var(--chip-focus-ring, #2563eb);
+  outline-offset: 2px;
+}
+
+.chip:hover {
+  background-color: var(--chip-bg-hover, #e2e8f0);
+  color: var(--chip-text-hover, #1e293b);
+  transform: translateY(-1px);
+}
+
+.chip:active {
+  transform: translateY(1px);
+}
+
+.chip.active {
+  background: var(--chip-bg-active, linear-gradient(135deg, #2563eb, #1d4ed8));
+  border-color: transparent;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.chip.active:hover {
+  background: var(--chip-bg-active-hover, linear-gradient(135deg, #1d4ed8, #1e40af));
+  color: #ffffff;
+}

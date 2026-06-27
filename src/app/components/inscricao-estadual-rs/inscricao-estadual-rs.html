@@ -1,0 +1,25 @@
+<div class="ie-container">
+  <label for="ie-input" [class.label-invalid]="showValidationError()">
+    Inscrição Estadual (RS)
+  </label>
+  
+  <div class="input-wrapper">
+    <input 
+      id="ie-input"
+      type="text" 
+      inputmode="numeric"
+      [value]="value()"
+      [class.input-invalid]="showValidationError()"
+      [attr.aria-invalid]="showValidationError()"
+      [attr.aria-describedby]="showValidationError() ? 'ie-error-msg' : null"
+      placeholder="000/0000000"
+      (input)="onInput($event)"
+      (blur)="onBlur()">
+  </div>
+
+  @if (showValidationError()) {
+    <span id="ie-error-msg" class="error-message" role="alert">
+      Inscrição Estadual inválida para o Rio Grande do Sul.
+    </span>
+  }
+</div>

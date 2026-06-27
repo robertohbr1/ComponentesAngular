@@ -1,0 +1,55 @@
+<div class="period-container" role="group" aria-label="Seletor de Período de Datas">
+  <div class="date-inputs">
+    <div class="input-group">
+      <label for="start-date-input" [class.label-invalid]="!isPeriodValid()">Início</label>
+      @if (mode() === 'day') {
+        <input 
+          id="start-date-input"
+          type="date"
+          [value]="startDate()"
+          [class.input-invalid]="!isPeriodValid()"
+          [attr.aria-invalid]="!isPeriodValid()"
+          [attr.aria-describedby]="!isPeriodValid() ? 'period-error-msg' : null"
+          (change)="onStartChange($event)">
+      } @else {
+        <input 
+          id="start-date-input"
+          type="month"
+          [value]="startDate()"
+          [class.input-invalid]="!isPeriodValid()"
+          [attr.aria-invalid]="!isPeriodValid()"
+          [attr.aria-describedby]="!isPeriodValid() ? 'period-error-msg' : null"
+          (change)="onStartChange($event)">
+      }
+    </div>
+
+    <div class="input-group">
+      <label for="end-date-input" [class.label-invalid]="!isPeriodValid()">Fim</label>
+      @if (mode() === 'day') {
+        <input 
+          id="end-date-input"
+          type="date"
+          [value]="endDate()"
+          [class.input-invalid]="!isPeriodValid()"
+          [attr.aria-invalid]="!isPeriodValid()"
+          [attr.aria-describedby]="!isPeriodValid() ? 'period-error-msg' : null"
+          (change)="onEndChange($event)">
+      } @else {
+        <input 
+          id="end-date-input"
+          type="month"
+          [value]="endDate()"
+          [class.input-invalid]="!isPeriodValid()"
+          [attr.aria-invalid]="!isPeriodValid()"
+          [attr.aria-describedby]="!isPeriodValid() ? 'period-error-msg' : null"
+          (change)="onEndChange($event)">
+      }
+    </div>
+  </div>
+
+  @if (!isPeriodValid()) {
+    <span id="period-error-msg" class="error-message" role="alert">
+      A data inicial não pode ser maior que a data final.
+    </span>
+  }
+</div>
