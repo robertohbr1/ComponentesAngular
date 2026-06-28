@@ -11,13 +11,13 @@ O projeto utiliza as novas APIs reativas do **Angular 22** (como Signal Inputs e
 - **Angular 22** (Stand-alone components, Signals, computed, effect)
 - **Vitest** para testes unitários de alta velocidade
 - **Estilos CSS Puros** encapsulados por componente, com foco em design premium e transições suaves
-- **Acessibilidade (a11y)**: Conformidade com especificações WAI-ARIA (`role="group"`, `aria-pressed`, `aria-invalid`, `:focus-visible`)
+- **Acessibilidade (a11y)**: Conformidade com especificações WAI-ARIA (`role="group"`, `role="radiogroup"`, `role="radio"`, `aria-pressed`, `aria-checked`, `:focus-visible`)
 
 ---
 
 ## 🧩 Componentes Disponíveis
 
-### 1. Seletor de Chips (`app-chips`)
+### 1. Seletor de Chips Múltiplo (`app-chips`)
 
 Um seletor múltiplo interativo projetado para gerar listas de valores delimitadas por vírgula e aspas simples (ex: `'A','B'`), prontas para uso direto em cláusulas `IN` do SQL Server.
 
@@ -40,7 +40,34 @@ Um seletor múltiplo interativo projetado para gerar listas de valores delimitad
 
 ---
 
-### 2. Validador de Inscrição Estadual do RS (`app-inscricao-estadual-rs`)
+### 2. Seletor de Chips Único / Radio (`app-chips-radio`)
+
+Um seletor parecido com o múltiplo, mas com comportamento de **botão de rádio**. Garante a seleção de **um e apenas um** elemento por vez (não há opção "Todos" e clicar no chip selecionado não o desmarca).
+
+#### 🛡️ Recursos
+- **Seleção Única Obrigatória**: Sempre há um item selecionado. Clicar no item ativo não o desmarca.
+- **Auto-Seleção Padrão**: Caso nenhuma opção inicial seja fornecida, seleciona automaticamente a primeira da lista.
+- **Formatação SQL**: Retorna o valor selecionado envolto em aspas simples (ex: `'M'`).
+
+#### ⚙️ Parâmetros (Inputs / Models)
+| Propriedade | Tipo | Modo | Descrição |
+| :--- | :--- | :--- | :--- |
+| `title` | `string` | Input | Título do grupo de rádio. |
+| `options` | `Array<{caption: string, value: string}>` | Input | Opções para renderizar nos botões. |
+| `selected` | `string` | Model (Two-way) | Retorna o valor selecionado em aspas simples (ex: `'M'`). |
+
+#### 💻 Exemplo de Uso
+```html
+<app-chips-radio 
+  title="Selecione o Gênero"
+  [options]="genderOptions"
+  [(selected)]="selectedGender">
+</app-chips-radio>
+```
+
+---
+
+### 3. Validador de Inscrição Estadual do RS (`app-inscricao-estadual-rs`)
 
 Um campo de entrada fiscal especializado para digitar e validar a Inscrição Estadual (IE) do Rio Grande do Sul (RS).
 
@@ -48,7 +75,7 @@ Um campo de entrada fiscal especializado para digitar e validar a Inscrição Es
 - **Máscara Automática**: Aplica formatação `XXX/XXXXXXX` em tempo real durante a digitação.
 - **Preenchimento de Zeros**: Se a IE tiver menos de 10 dígitos, alinha-a à direita preenchendo com zeros à esquerda (ex: `19` vira `000/0000019`) no momento de desfocar o campo (blur).
 - **Validação Módulo 11 (RS)**: Executa a validação oficial do dígito verificador.
-- **Destaque de Erro**: Se inválida, destaca o campo em vermelho e exibe uma mensagem de aviso. O destaque some imediatamente se o campo for corrigido ou limpo (vazio).
+- **Destaque de Erro**: Se inválida, destaca o campo em vermelho e exibe uma mensagem de aviso. O destaque sumirá se o campo for corrigido ou limpo (vazio).
 - **Opção de Desativar**: Permite pular a validação por meio de configuração.
 
 #### ⚙️ Parâmetros (Inputs / Models)
@@ -69,7 +96,7 @@ Um campo de entrada fiscal especializado para digitar e validar a Inscrição Es
 
 ---
 
-### 3. Seletor de Período de Datas (`app-periodo-datas`)
+### 4. Seletor de Período de Datas (`app-periodo-datas`)
 
 Um componente para selecionar faixas de data (Data Inicial e Data Final) com validação de período integrada e suporte a agrupamento por mês/ano.
 
@@ -113,7 +140,7 @@ Um componente para selecionar faixas de data (Data Inicial e Data Final) com val
 3. Acesse `http://localhost:4200` no seu navegador para testar os componentes no painel interativo de showcase.
 
 ## 🧪 Executando Testes Unitários
-O projeto utiliza o Vitest integrado ao Angular CLI. Para rodar a suite completa de 25 testes:
+O projeto utiliza o Vitest integrado ao Angular CLI. Para rodar a suite completa de 29 testes:
 ```bash
 npm run test
 ```

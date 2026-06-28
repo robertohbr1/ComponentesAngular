@@ -1,0 +1,22 @@
+<div class="chips-container">
+  @if (title()) {
+    <h3>{{ title() }}</h3>
+  }
+  
+  <div 
+    class="chips-group" 
+    role="radiogroup" 
+    [attr.aria-label]="title() || 'Opções de Seleção Única'">
+    @for (opt of options(); track opt.value) {
+      <button 
+        type="button"
+        role="radio"
+        class="chip" 
+        [class.active]="selected() === '\'' + opt.value + '\''" 
+        [attr.aria-checked]="selected() === '\'' + opt.value + '\''"
+        (click)="selectOption(opt.value)">
+        {{ opt.caption }}
+      </button>
+    }
+  </div>
+</div>

@@ -9,10 +9,10 @@
 </header>
 
 <main class="app-main">
-  <!-- Seção 1: Chips -->
+  <!-- Seção 1: Chips (Multi-seleção) -->
   <section class="showcase-section">
     <div class="section-header">
-      <h2>Componente: Chips Selector</h2>
+      <h2>Componente: Chips Selector (Múltiplo)</h2>
       <p>Um seletor reativo múltiplo que gera strings formatadas em padrão SQL (ex: <code>'A','B'</code>), ideal para cláusulas <code>IN</code> de banco de dados.</p>
     </div>
 
@@ -90,7 +90,79 @@ WHERE Nome LIKE
     </div>
   </section>
 
-  <!-- Seção 2: Validador de IE RS -->
+  <!-- Seção 2: Chips (Seleção Única / Radio) -->
+  <section class="showcase-section" style="margin-top: 60px;">
+    <div class="section-header">
+      <h2>Componente: Chips Radio (Seleção Única)</h2>
+      <p>Um seletor estilo chips com comportamento de botão de rádio. Apenas uma opção pode estar ativa por vez e a seleção é obrigatória (sempre haverá um selecionado).</p>
+    </div>
+
+    <div class="showcase-grid">
+      <!-- Exemplo 1: Gênero (Seleção Padrão Automática) -->
+      <div class="showcase-card animate-fade-in" style="animation-delay: 0.15s;">
+        <div class="card-header">
+          <span class="badge" style="background-color: #dcfce7; color: #15803d;">Seleção Padrão</span>
+          <h3>Filtro de Gênero</h3>
+        </div>
+        
+        <div class="card-body">
+          <app-chips-radio 
+            title="Selecione o Gênero"
+            [options]="genderOptions"
+            [(selected)]="selectedGender">
+          </app-chips-radio>
+        </div>
+
+        <div class="card-footer">
+          <div class="data-preview">
+            <span class="preview-label">Valor de Retorno (Variável):</span>
+            <div class="preview-value" [class.empty]="!selectedGender()">
+              {{ selectedGender() || '""' }}
+            </div>
+          </div>
+
+          <div class="sql-preview">
+            <span class="preview-label">Aplicação em Consulta SQL:</span>
+            <pre><code>SELECT * FROM Pessoas
+WHERE Genero = {{ selectedGender() }}</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exemplo 2: Sistema Operacional (Valor Pré-definido) -->
+      <div class="showcase-card animate-fade-in" style="animation-delay: 0.2s;">
+        <div class="card-header">
+          <span class="badge" style="background-color: #dcfce7; color: #15803d;">Valor Inicial</span>
+          <h3>Filtro de Sistema Operacional</h3>
+        </div>
+        
+        <div class="card-body">
+          <app-chips-radio 
+            title="Selecione o S.O. de Desenvolvimento"
+            [options]="systemOptions"
+            [(selected)]="selectedSystem">
+          </app-chips-radio>
+        </div>
+
+        <div class="card-footer">
+          <div class="data-preview">
+            <span class="preview-label">Valor de Retorno (Variável):</span>
+            <div class="preview-value" [class.empty]="!selectedSystem()">
+              {{ selectedSystem() || '""' }}
+            </div>
+          </div>
+
+          <div class="sql-preview">
+            <span class="preview-label">Aplicação em Consulta SQL:</span>
+            <pre><code>SELECT * FROM Servidores
+WHERE SistemaOperacional = {{ selectedSystem() }}</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção 3: Validador de IE RS -->
   <section class="showcase-section" style="margin-top: 60px;">
     <div class="section-header">
       <h2>Componente: Inscrição Estadual (RS)</h2>
@@ -98,7 +170,7 @@ WHERE Nome LIKE
     </div>
 
     <div class="showcase-grid" style="grid-template-columns: 1fr;">
-      <div class="showcase-card animate-fade-in" style="animation-delay: 0.2s; max-width: 600px; margin: 0 auto; width: 100%;">
+      <div class="showcase-card animate-fade-in" style="animation-delay: 0.25s; max-width: 600px; margin: 0 auto; width: 100%;">
         <div class="card-header" style="justify-content: space-between;">
           <div style="display: flex; align-items: center; gap: 12px;">
             <span class="badge" style="background-color: #fef3c7; color: #92400e;">Fiscal</span>
@@ -151,7 +223,7 @@ WHERE Nome LIKE
     </div>
   </section>
 
-  <!-- Seção 3: Período de Datas -->
+  <!-- Seção 4: Período de Datas -->
   <section class="showcase-section" style="margin-top: 60px;">
     <div class="section-header">
       <h2>Componente: Seletor de Período de Datas</h2>
@@ -213,7 +285,7 @@ WHERE Nome LIKE
       </div>
 
       <!-- Exemplo 2: Modo Mês/Ano -->
-      <div class="showcase-card animate-fade-in" style="animation-delay: 0.4s;">
+      <div class="showcase-card animate-fade-in" style="animation-delay: 0.35s;">
         <div class="card-header">
           <span class="badge" style="background-color: #f3e8ff; color: #6b21a8;">Competência</span>
           <h3>Modo: Mês / Ano</h3>

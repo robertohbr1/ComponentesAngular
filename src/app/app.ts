@@ -2,15 +2,16 @@ import { Component, signal } from '@angular/core';
 import { Chips } from './components/chips/chips';
 import { InscricaoEstadualRs } from './components/inscricao-estadual-rs/inscricao-estadual-rs';
 import { PeriodoDatas } from './components/periodo-datas/periodo-datas';
+import { ChipsRadio } from './components/chips-radio/chips-radio';
 
 @Component({
   selector: 'app-root',
-  imports: [Chips, InscricaoEstadualRs, PeriodoDatas],
+  imports: [Chips, InscricaoEstadualRs, PeriodoDatas, ChipsRadio],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
 export class App {
-  // Estado das seleções dos chips (formato SQL Server)
+  // Estado das seleções dos chips de multi-seleção (formato SQL Server)
   protected readonly selectedLetters = signal<string>('');
   protected readonly selectedCategories = signal<string>('');
 
@@ -29,6 +30,10 @@ export class App {
   protected readonly endDateMonth = signal<string>('2026-06');
   protected readonly isPeriodMonthValid = signal<boolean>(true);
 
+  // Estado das seleções de chips do tipo Radio (seleção única obrigatória)
+  protected readonly selectedGender = signal<string>(''); // Vazio inicial para testar a seleção padrão automática
+  protected readonly selectedSystem = signal<string>("'LIN'"); // Pre-selecionado 'LIN' (Linux)
+
   // Opções para o seletor de letras
   protected readonly lettersOptions = [
     { caption: 'A', value: 'A' },
@@ -45,5 +50,19 @@ export class App {
     { caption: 'Verduras', value: 'VER' },
     { caption: 'Carnes', value: 'CAR' },
     { caption: 'Bebidas', value: 'BEB' },
+  ];
+
+  // Opções para o seletor de gênero
+  protected readonly genderOptions = [
+    { caption: 'Masculino', value: 'M' },
+    { caption: 'Feminino', value: 'F' },
+    { caption: 'Outro', value: 'O' },
+  ];
+
+  // Opções para o seletor de S.O.
+  protected readonly systemOptions = [
+    { caption: 'Windows', value: 'WIN' },
+    { caption: 'Linux', value: 'LIN' },
+    { caption: 'macOS', value: 'MAC' },
   ];
 }
